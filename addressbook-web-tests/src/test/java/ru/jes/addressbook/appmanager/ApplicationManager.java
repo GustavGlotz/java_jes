@@ -1,7 +1,5 @@
 package ru.jes.addressbook.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -30,14 +28,7 @@ public class ApplicationManager {
         wd.quit();
     }
 
-    public boolean isAlertPresent() {
-        try {
-            wd.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
-    }
+
 
     public GroupHelper getGroupHelper() {
         return groupHelper;

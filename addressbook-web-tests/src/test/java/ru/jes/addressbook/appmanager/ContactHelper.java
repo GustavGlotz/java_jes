@@ -4,46 +4,36 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.jes.addressbook.model.ContactData;
 
-public class ContactHelper {
-
-    public WebDriver wd;
+public class ContactHelper extends BaseHelper {
 
     public ContactHelper(WebDriver wd) {
-        this.wd = wd;
+        super(wd);
     }
 
     public void gotoHomePage() {
-        wd.findElement(By.linkText("home page")).click();
+        click(By.linkText("home page"));
     }
 
     public void submitContactForm() {
-        wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+        click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
     public void fillContactForm(ContactData contactData) {
-        wd.findElement(By.name("firstname")).click();
-        wd.findElement(By.name("firstname")).clear();
-        wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
-        wd.findElement(By.name("lastname")).click();
-        wd.findElement(By.name("lastname")).clear();
-        wd.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
-        wd.findElement(By.name("email")).click();
-        wd.findElement(By.name("email")).clear();
-        wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
-        wd.findElement(By.name("mobile")).click();
-        wd.findElement(By.name("mobile")).clear();
-        wd.findElement(By.name("mobile")).sendKeys(contactData.getPhone());
+        type(By.name("firstname"), contactData.getFirstname());
+        type(By.name("lastname"), contactData.getLastname());
+        type(By.name("email"), contactData.getEmail());
+        type(By.name("mobile"), contactData.getPhone());
     }
 
     public void gotoContactPage() {
-        wd.findElement(By.linkText("add new")).click();
+        click(By.linkText("add new"));
     }
 
     public void selectContactDelete() {
-        wd.findElement(By.id("19")).click();
+        click(By.id("19"));
     }
 
     public void confirmDeletion() {
-        wd.findElement(By.xpath("//input[@value='Delete']")).click();
+        click(By.xpath("//input[@value='Delete']"));
     }
 }
