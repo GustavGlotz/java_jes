@@ -1,9 +1,11 @@
-package ru.jes.addressbook;
+package ru.jes.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import ru.jes.addressbook.model.ContactData;
+import ru.jes.addressbook.model.GroupData;
 
 import java.util.concurrent.TimeUnit;
 

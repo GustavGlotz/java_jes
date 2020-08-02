@@ -1,6 +1,7 @@
-package ru.jes.addressbook;
+package ru.jes.addressbook.tests;
 
 import org.testng.annotations.*;
+import ru.jes.addressbook.model.GroupData;
 
 public class GroupCreationTests extends TestBase {
 
