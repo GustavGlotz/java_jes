@@ -10,14 +10,14 @@ public class ContactDeletionTests {
     private WebDriver wd;
 
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
         wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
     @Test
-    public void testContactDeletionTests() throws Exception {
+    public void testContactDeletion() throws Exception {
         wd.get("http://localhost/addressbook/");
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
@@ -30,7 +30,7 @@ public class ContactDeletionTests {
 
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void tearDown() throws Exception {
         wd.quit();
     }
