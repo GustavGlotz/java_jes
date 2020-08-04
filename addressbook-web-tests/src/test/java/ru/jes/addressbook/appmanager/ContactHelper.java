@@ -30,7 +30,7 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void selectContactDelete() {
-        click(By.id("19"));
+        click(By.name("selected[]"));
     }
 
     public void confirmDeletion() {
