@@ -29,7 +29,7 @@ public class ContactHelper extends BaseHelper {
         click(By.linkText("add new"));
     }
 
-    public void selectContactDelete() {
+    public void selectContact() {
         click(By.name("selected[]"));
     }
 
