@@ -1,12 +1,10 @@
 package ru.jes.addressbook.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 
 public class BaseHelper {
     public WebDriver wd;
+    public boolean acceptNextAlert = true;
 
     public BaseHelper(WebDriver wd) {
         this.wd = wd;
@@ -37,6 +35,21 @@ public class BaseHelper {
             return true;
         } catch (NoSuchElementException e) {
             return false;
+        }
+    }
+
+    public String closeAlertAndGetItsText() {
+        try {
+            Alert alert = wd.switchTo().alert();
+            String alertText = alert.getText();
+            if (acceptNextAlert) {
+                alert.accept();
+            } else {
+                alert.dismiss();
+            }
+            return alertText;
+        } finally {
+            acceptNextAlert = true;
         }
     }
 }

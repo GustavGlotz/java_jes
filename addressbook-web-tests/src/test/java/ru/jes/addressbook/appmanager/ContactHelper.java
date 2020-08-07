@@ -1,10 +1,15 @@
 package ru.jes.addressbook.appmanager;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.jes.addressbook.model.ContactData;
 
+import static org.testng.Assert.assertTrue;
+
 public class ContactHelper extends BaseHelper {
+
+
 
     public ContactHelper(WebDriver wd) {
         super(wd);
@@ -35,6 +40,7 @@ public class ContactHelper extends BaseHelper {
 
     public void deleteSelectedContact() {
         click(By.xpath("//input[@value='Delete']"));
+        assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
     }
 
     public void ContactModification() {
@@ -44,4 +50,6 @@ public class ContactHelper extends BaseHelper {
     public void submitContactModification() {
         click(By.xpath("//input[@name='update'][2]"));
     }
+
+
 }
