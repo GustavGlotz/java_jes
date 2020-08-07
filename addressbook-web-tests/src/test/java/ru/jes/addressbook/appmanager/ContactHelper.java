@@ -25,7 +25,7 @@ public class ContactHelper extends BaseHelper {
         type(By.name("mobile"), contactData.getPhone());
     }
 
-    public void gotoContactPage() {
+    public void addNewContact() {
         click(By.linkText("add new"));
     }
 
