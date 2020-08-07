@@ -37,7 +37,7 @@ public class ContactHelper extends BaseHelper {
         click(By.xpath("//input[@value='Delete']"));
     }
 
-    public void initContactModification() {
+    public void ContactModification() {
         click(By.xpath("//img[@alt='Edit']"));
     }
 
