@@ -3,7 +3,11 @@ package ru.jes.addressbook.appmanager;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ru.jes.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.testng.Assert.assertTrue;
 
@@ -65,5 +69,18 @@ public class ContactHelper extends BaseHelper {
 
     public int getContactCount() {
         return wd.findElements(By.name("selected[]")).size();
+    }
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<ContactData>();
+        List<WebElement> line = wd.findElements(By.xpath("//tr[@name='entry']"));
+        for (WebElement element : line) {
+            List<WebElement> cell = element.findElements(By.tagName("td"));
+            String firstname = cell.get(2).getText();
+            String lastname = cell.get(3).getText();
+            ContactData contact = new ContactData(firstname, lastname, null, null);
+            contacts.add(contact);
+        }
+        return contacts;
     }
 }
