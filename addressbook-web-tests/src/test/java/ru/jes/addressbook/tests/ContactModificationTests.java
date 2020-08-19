@@ -5,22 +5,29 @@ import org.testng.annotations.Test;
 import ru.jes.addressbook.appmanager.BaseHelper;
 import ru.jes.addressbook.model.ContactData;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class ContactModificationTests extends TestBase {
 
     @Test
-    public void testContactModification(){
-        if (! app.getContactHelper().isThereAContact()) {
+    public void testContactModification() {
+        if (!app.getContactHelper().isThereAContact()) {
             app.getContactHelper().createContact(new ContactData("Джордани", "Йованович", "BabaYaga@mail.com", "375291234567"));
         }
         List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().selectContact(before.size() -1);
+        app.getContactHelper().selectContact(before.size() - 1);
         app.getContactHelper().ContactModification();
-        app.getContactHelper().fillContactForm(new ContactData("Джордани", "Йованович", "BabaYaga@mail.com", "375291234567"));
+        ContactData contact = new ContactData(before.get(before.size() - 1).getId(),"Джордани", "Йованович", "BabaYaga@mail.com", "375291234567");
+        app.getContactHelper().fillContactForm(contact);
         app.getContactHelper().submitContactModification();
         app.getContactHelper().gotoHomePage();
         List<ContactData> after = app.getContactHelper().getContactList();
-        Assert.assertEquals(after.size(), before.size() );
+        Assert.assertEquals(after.size(), before.size());
+
+
+        before.remove(before.size() - 1);
+        before.add(contact);
+        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
     }
 }
