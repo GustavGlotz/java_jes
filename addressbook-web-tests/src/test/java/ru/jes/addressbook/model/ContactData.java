@@ -1,15 +1,16 @@
 package ru.jes.addressbook.model;
 
 public class ContactData {
-    private final String id;
+
+
+    private int id;
     private final String firstname;
     private final String lastname;
     private final String email;
     private final String phone;
 
 
-
-    public ContactData(String id, String firstname, String lastname, String email, String phone) {
+    public ContactData(int id, String firstname, String lastname, String email, String phone) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -17,8 +18,9 @@ public class ContactData {
         this.phone = phone;
     }
 
+
     public ContactData(String firstname, String lastname, String email, String phone) {
-        this.id = null;
+        this.id = 0;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -41,28 +43,12 @@ public class ContactData {
         return phone;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ContactData that = (ContactData) o;
-
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
-        return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
-        result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
-        return result;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
@@ -72,6 +58,26 @@ public class ContactData {
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ContactData that = (ContactData) o;
+
+        if (id != that.id) return false;
+        if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
+        return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
+        result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+        return result;
     }
 
 }
