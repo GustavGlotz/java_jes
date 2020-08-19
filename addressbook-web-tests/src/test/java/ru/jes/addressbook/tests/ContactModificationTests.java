@@ -2,9 +2,7 @@ package ru.jes.addressbook.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ru.jes.addressbook.appmanager.BaseHelper;
 import ru.jes.addressbook.model.ContactData;
-
 import java.util.HashSet;
 import java.util.List;
 
@@ -24,7 +22,6 @@ public class ContactModificationTests extends TestBase {
         app.getContactHelper().gotoHomePage();
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size());
-
 
         before.remove(before.size() - 1);
         before.add(contact);

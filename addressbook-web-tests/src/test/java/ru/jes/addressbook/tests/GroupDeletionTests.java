@@ -3,7 +3,6 @@ package ru.jes.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.jes.addressbook.model.GroupData;
-
 import java.util.List;
 
 public class GroupDeletionTests extends TestBase {
@@ -20,7 +19,6 @@ public class GroupDeletionTests extends TestBase {
         app.getGroupHelper().returnToGroupPage();
         List<GroupData> after = app.getGroupHelper().getGroupList();
         Assert.assertEquals(after.size(), before.size() - 1);
-
 
         before.remove(before.size() - 1);
         Assert.assertEquals(before, after);

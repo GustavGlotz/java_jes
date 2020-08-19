@@ -3,7 +3,6 @@ package ru.jes.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.jes.addressbook.model.ContactData;
-
 import java.util.List;
 
 public class ContactDeletionTests extends TestBase {
@@ -18,7 +17,6 @@ public class ContactDeletionTests extends TestBase {
         app.getContactHelper().deleteSelectedContact();
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size() - 1 );
-
 
         before.remove(before.size() - 1);
         Assert.assertEquals(before, after);
