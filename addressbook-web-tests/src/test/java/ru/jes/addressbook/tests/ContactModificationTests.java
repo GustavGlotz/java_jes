@@ -1,6 +1,7 @@
 package ru.jes.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.jes.addressbook.model.ContactData;
 
@@ -10,21 +11,22 @@ import java.util.List;
 
 public class ContactModificationTests extends TestBase {
 
-    @Test
-    public void testContactModification() {
+    @BeforeMethod
+    public void ensurePreconditions() {
         if (!app.getContactHelper().isThereAContact()) {
             app.getContactHelper().createContact(new ContactData("Джордани", "Йованович", "BabaYaga@mail.com", "375291234567"));
         }
+    }
+
+    @Test
+    public void testContactModification() {
         List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().selectContact(before.size() - 1);
-        app.getContactHelper().ContactModification();
-        ContactData contact = new ContactData(before.get(before.size() - 1).getId(), "Джордани", "Йованович", "BabaYaga@mail.com", "375291234567");
-        app.getContactHelper().fillContactForm(contact);
-        app.getContactHelper().submitContactModification();
-        app.getContactHelper().gotoHomePage();
+        int index = before.size() - 1;
+        ContactData contact = new ContactData(before.get(index).getId(), "Джордани", "Йованович", "BabaYaga@mail.com", "375291234567");
+        app.getContactHelper().modifyContact(index, contact);
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size());
-        before.remove(before.size() - 1);
+        before.remove(index);
 
         before.add(contact);
         Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
@@ -32,4 +34,6 @@ public class ContactModificationTests extends TestBase {
         after.sort(byId);
         Assert.assertEquals(before, after);
     }
+
+
 }
