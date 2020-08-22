@@ -63,7 +63,6 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void modify(int index, ContactData contact) {
-        selectContact(index);
         ContactModification();
         fillContactForm(contact);
         submitContactModification();
