@@ -54,8 +54,9 @@ public class ContactHelper extends BaseHelper {
         assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
     }
 
-    public void ContactModification() {
-        click(By.xpath("//img[@alt='Edit']"));
+    public void ContactModification(int index) {
+        wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+
     }
 
     public void submitContactModification() {
@@ -70,7 +71,7 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void modify(int index, ContactData contact) {
-        ContactModification();
+        ContactModification(0);
         fillContactForm(contact);
         submitContactModification();
         gotoHomePage();
